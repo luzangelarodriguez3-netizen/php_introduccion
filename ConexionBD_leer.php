@@ -28,12 +28,12 @@ conectarBD();
 
 function consultarBD(){
     $conn = conectarBD();
-    $sql = "SELECT id, username AS username, password, created_at, updated_at FROM login_user";
+    $sql = "SELECT id, username AS username, password, created_at, update_at FROM login_user";
     $result = $conn->query($sql);
 
     $stmt = $conn->prepare($sql);
-    if($result){
-        die("Error en la preparación de la consulta: " . $conn->error);
+    if(!$result){
+        die("Error en la preparación de la consulta:" . $conn->error);
        
     }
     return $result;
@@ -66,7 +66,7 @@ $result = consultarBD();
             <td><?php echo htmlspecialchars($row['username']); ?></td>
             <td><?php echo htmlspecialchars($row['password']); ?></td>
             <td><?php echo htmlspecialchars($row['created_at']); ?></td>
-            <td><?php echo htmlspecialchars($row['updated_at']); ?></td>
+            <td><?php echo htmlspecialchars($row['update_at']); ?></td>
         </tr>
     <?php endwhile; ?>
 <?php else: ?>
